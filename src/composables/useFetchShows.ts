@@ -5,5 +5,6 @@ export function useFetchShows() {
   return useQuery({
     queryKey: ['shows'],
     queryFn: fetchShows,
+    networkMode: "offlineFirst",
   });
 }
