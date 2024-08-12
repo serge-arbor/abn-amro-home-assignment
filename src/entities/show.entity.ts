@@ -2,8 +2,8 @@ export interface Schedule {
   time: string;
   days: string[];
 }
-export interface Ratring {
-  average: number;
+export interface Rating {
+  average: number | null;
 }
 export interface Country {
   name: string;
@@ -12,13 +12,14 @@ export interface Country {
 }
 export interface Network {
   id: number;
-  names: string;
+  name: string;
   country: Country;
+  officialSite?: string;
 }
 export interface Externals {
-  tvrage: number;
-  thetvdb: number;
-  imdb: string;
+  tvrage?: number;
+  thetvdb?: number;
+  imdb?: string;
 }
 export interface Image {
   medium: string;
@@ -28,6 +29,7 @@ export interface LinkSelf {
   href: string;
 }
 export interface PreviousEpisode extends LinkSelf {
+  name: string;
 }
 export interface ShowLink extends LinkSelf {
 }
@@ -122,21 +124,25 @@ export interface Show {
   language: string;
   genres: string[];
   status: string;
-  runtime: number;
+  runtime: number | null;
+  averageRuntime?: number;
   premiered: string;
-  officialSite: string;
+  ended?: string | null;
+  officialSite?: string;
   schedule: Schedule;
-  ratring: Ratring;
+  rating: Rating;
   weight: number;
-  netwoek: Network;
-  webChannel: string | null;
+  network: Network;
+  webChannel?: string | null;
+  dvdCountry?: string | null;
   externals: Externals;
   image: Image;
   summary: string;
   updated: number;
   _links: Links;
-  _embedded: Embedded;
+  _embedded?: Embedded;
 }
+
 export interface ShowSearch {
   score: number;
   show: Show;
