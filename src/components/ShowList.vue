@@ -1,34 +1,30 @@
 <script setup lang="ts">
-import { type Show } from "@/entities/show.entity";
+import { type Show } from '@/entities/show.entity'
 
 defineProps<{
-  data: Show[];
-  error: Error | null;
-  isLoading: boolean;
-}>();
+  data: Show[] | undefined
+  error: Error | null
+  isLoading: boolean
+}>()
 </script>
 
 <template>
-  <div class="p-4">
-    <div v-if="isLoading" class="text-center text-gray-500">
-      Loading shows...
-    </div>
-    <div v-if="error" class="text-center text-red-500">
-      Error: {{ error.message }}
-    </div>
+  <div>
+    <div v-if="isLoading" class="text-center text-gray-500">Loading shows...</div>
+    <div v-if="error" class="text-center text-red-500">Error: {{ error.message }}</div>
     <ul v-if="data" class="space-y-4">
-      <li 
-        v-for="show in data" 
-        :key="show.id" 
+      <li
+        v-for="show in data"
+        :key="show.id"
         class="border rounded-lg shadow hover:shadow-lg transition-shadow"
       >
-        <RouterLink 
-          :to="{ name: 'show-details', params: { id: show.id } }" 
+        <RouterLink
+          :to="{ name: 'show-details', params: { id: show.id } }"
           class="flex p-4 hover:bg-gray-100"
         >
-          <img 
-            :src="show.image.medium" 
-            :alt="show.name" 
+          <img
+            :src="show.image.medium"
+            :alt="show.name"
             class="w-24 h-36 object-cover rounded-md"
           />
           <div class="ml-4">

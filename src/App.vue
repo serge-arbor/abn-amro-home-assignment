@@ -4,8 +4,7 @@ import { RouterView } from 'vue-router'
 
 <template>
   <header>
-    <div class="wrapper">
-    </div>
+    <div class="wrapper"></div>
   </header>
 
   <RouterView />
