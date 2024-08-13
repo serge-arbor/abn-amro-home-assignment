@@ -14,7 +14,7 @@ const selectedGenres = defineModel({
   required: true
 })
 
-const toggleGenre = (genre: string) => {
+const toggleGenre = (genre: GenreId) => {
   selectedGenres.value.has(genre)
     ? selectedGenres.value.delete(genre)
     : selectedGenres.value.add(genre)
@@ -28,27 +28,25 @@ const clearSelection = () => {
 </script>
 
 <template>
-  <div class="space-y-2">
-    <div class="flex flex-wrap gap-2">
-      <!-- Iterate over the genreArray to display genres and their counts -->
+  <div class="space-y-4">
+    <div class="flex flex-wrap gap-3">
       <button
         v-for="([genreId, genreDetails], index) in genreArray"
         :key="index"
-        class="px-4 py-2 rounded border"
+        class="px-4 py-2 rounded-lg border font-semibold transition-all duration-300 ease-in-out"
         :class="[
           selectedGenres.has(genreId)
-            ? 'bg-blue-500 text-white'
-            : 'bg-white text-blue-500 border-blue-500'
+            ? 'bg-blue-600 text-white border-blue-600 shadow-md hover:bg-blue-700'
+            : 'bg-white text-blue-600 border-blue-600 hover:bg-blue-100'
         ]"
         @click="toggleGenre(genreId)"
       >
         {{ genreDetails.name }} ({{ genreDetails.count }})
       </button>
 
-      <!-- Clear button to clear all selected genres -->
       <button
         v-if="selectedGenres.size > 0"
-        class="px-4 py-2 rounded border bg-red-500 text-white"
+        class="px-4 py-2 rounded-lg border font-semibold transition-all duration-300 ease-in-out bg-red-500 text-white hover:bg-red-600 shadow-md"
         @click="clearSelection"
       >
         Clear
@@ -61,6 +59,16 @@ const clearSelection = () => {
 button {
   transition:
     background-color 0.3s,
-    color 0.3s;
+    color 0.3s,
+    box-shadow 0.3s;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
+}
+
+button:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 </style>
