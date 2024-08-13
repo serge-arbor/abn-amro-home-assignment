@@ -3,20 +3,22 @@ import { ref } from 'vue'
 
 import FilterSidebar from '@/components/FilterSidebar.vue'
 import ShowList from '@/components/ShowList.vue'
+import { useGenres } from '@/composables/useGenres'
 import { useShowIndex } from '@/composables/useShowIndex'
-import type { Genre } from '@/entities/show.entity'
+import type { GenreId } from '@/entities/show.entity'
 
-const selectedGenres = ref<Set<Genre>>(new Set())
+const selectedGenres = ref<Set<GenreId>>(new Set())
 
-const { filteredShows, genres, error, isLoading } = useShowIndex(selectedGenres)
+const { filteredShows, error, isLoading } = useShowIndex(selectedGenres)
+const { genres, error: genresError, isLoading: isLoadingGenres } = useGenres()
 </script>
 
 <template>
   <main class="p-4 flex flex-col gap-4">
     <FilterSidebar
       v-model="selectedGenres"
-      :error="error"
-      :is-loading="isLoading"
+      :error="genresError"
+      :is-loading="isLoadingGenres"
       :genres="genres"
     />
 

@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import type { Genre } from '@/entities/show.entity'
+import type { GenreDetails, GenreId } from '@/entities/show.entity'
 
 const props = defineProps<{
-  genres: Set<Genre>
+  genres: Map<GenreId, GenreDetails>
   error: Error | null
   isLoading: boolean
 }>()
 
 const selectedGenres = defineModel({
-  type: Set<Genre>,
+  type: Set<GenreId>,
   required: true
 })
 
@@ -20,7 +20,7 @@ const toggleGenre = (genre: string) => {
     : selectedGenres.value.add(genre)
 }
 
-const genreArray = computed(() => Array.from(props.genres))
+const genreArray = computed(() => Array.from(props.genres.entries()))
 
 const clearSelection = () => {
   selectedGenres.value.clear()
@@ -30,20 +30,22 @@ const clearSelection = () => {
 <template>
   <div class="space-y-2">
     <div class="flex flex-wrap gap-2">
+      <!-- Iterate over the genreArray to display genres and their counts -->
       <button
-        v-for="(genre, index) in genreArray"
+        v-for="([genreId, genreDetails], index) in genreArray"
         :key="index"
         class="px-4 py-2 rounded border"
         :class="[
-          selectedGenres.has(genre)
+          selectedGenres.has(genreId)
             ? 'bg-blue-500 text-white'
             : 'bg-white text-blue-500 border-blue-500'
         ]"
-        @click="toggleGenre(genre)"
+        @click="toggleGenre(genreId)"
       >
-        {{ genre }}
+        {{ genreDetails.name }} ({{ genreDetails.count }})
       </button>
 
+      <!-- Clear button to clear all selected genres -->
       <button
         v-if="selectedGenres.size > 0"
         class="px-4 py-2 rounded border bg-red-500 text-white"

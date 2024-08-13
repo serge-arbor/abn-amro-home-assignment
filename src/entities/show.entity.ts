@@ -115,7 +115,13 @@ export interface Crew {
   person: Person
 }
 
-export type Genre = string
+export type GenreId = string
+
+export interface GenreDetails {
+  id: GenreId
+  name: string
+  count: number
+}
 
 export interface Show {
   id: number
@@ -123,7 +129,7 @@ export interface Show {
   name: string
   type: string
   language: string
-  genres: Genre[]
+  genres: GenreId[]
   status: string
   runtime: number | null
   averageRuntime?: number
