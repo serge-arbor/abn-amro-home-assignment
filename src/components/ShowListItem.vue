@@ -19,7 +19,7 @@ defineProps<{
         class="w-24 h-36 object-cover rounded-md"
       />
       <div class="ml-4">
-        <h3 class="text-lg font-semibold text-gray-800">
+        <h3 class="text-lg font-semibold text-gray-800 mb-2">
           {{ show.name }}
         </h3>
         <div class="text-sm text-gray-600 space-y-1">

@@ -8,6 +8,9 @@ dependencies:
   '@tanstack/vue-query':
     specifier: ^5.51.21
     version: 5.51.21(vue@3.4.37)
+  '@vueuse/components':
+    specifier: ^10.11.1
+    version: 10.11.1(vue@3.4.37)
   '@vueuse/core':
     specifier: ^10.11.1
     version: 10.11.1(vue@3.4.37)
@@ -1152,6 +1155,17 @@ packages:
   /@vue/tsconfig@0.5.1:
     resolution: {integrity: sha512-VcZK7MvpjuTPx2w6blwnwZAu5/LgBUtejFOi3pPGQFXQN5Ela03FUtd2Qtg4yWGGissVL0dr6Ro1LfOFh+PCuQ==}
     dev: true
+
+  /@vueuse/components@10.11.1(vue@3.4.37):
+    resolution: {integrity: sha512-ThcreQCX/eq61sLkLKjigD4PQvs3Wy4zglICvQH9tP6xl87y5KsQEoizn6OI+R3hrOgwQHLJe7Y0wLLh3fBKcg==}
+    dependencies:
+      '@vueuse/core': 10.11.1(vue@3.4.37)
+      '@vueuse/shared': 10.11.1(vue@3.4.37)
+      vue-demi: 0.14.10(vue@3.4.37)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
 
   /@vueuse/core@10.11.1(vue@3.4.37):
     resolution: {integrity: sha512-guoy26JQktXPcz+0n3GukWIy/JDNKti9v6VEMu6kV2sYBsWuGiTU8OWdg+ADfUbHg3/3DlqySDe7JmdHrktiww==}

@@ -25,7 +25,7 @@ const { genres } = useGenres(showList)
   <main class="p-4 flex flex-col gap-4">
     <SearchBar v-model="searchQuery" />
 
-    <GenresFilter v-model="selectedGenres" :genres="genres" />
+    <GenresFilter v-model="selectedGenres" :genres="genres" :is-loading="isLoading" />
 
     <ShowList :data="filteredShowList" :error="error" :is-loading="isLoading" />
   </main>

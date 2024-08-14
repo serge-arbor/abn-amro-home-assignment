@@ -3,8 +3,11 @@ import { computed } from 'vue'
 
 import type { GenreDetails, GenreId } from '@/entities/show.entity'
 
+import GenresFilterSkeleton from './skeletons/GenresFilterSkeleton.vue'
+
 const props = defineProps<{
   genres: Map<GenreId, GenreDetails>
+  isLoading: boolean
 }>()
 
 const selectedGenres = defineModel({
@@ -26,12 +29,14 @@ const clearSelection = () => {
 </script>
 
 <template>
-  <div class="space-y-4">
-    <div class="flex flex-wrap gap-3">
+  <GenresFilterSkeleton v-if="isLoading" />
+
+  <div v-else class="space-y-4">
+    <div class="flex flex-wrap gap-2">
       <button
         v-for="([genreId, genreDetails], index) in genreArray"
         :key="index"
-        class="px-4 py-2 rounded-lg border font-semibold transition-all duration-300 ease-in-out"
+        class="px-3 py-1 rounded-md border font-semibold transition-all duration-300 ease-in-out text-xs"
         :class="[
           selectedGenres.has(genreId)
             ? 'bg-blue-600 text-white border-blue-600 shadow-md hover:bg-blue-700'
@@ -44,7 +49,7 @@ const clearSelection = () => {
 
       <button
         v-if="selectedGenres.size > 0"
-        class="px-4 py-2 rounded-lg border font-semibold transition-all duration-300 ease-in-out bg-red-500 text-white hover:bg-red-600 shadow-md"
+        class="px-3 py-1 rounded-md border font-semibold transition-all duration-300 ease-in-out bg-red-500 text-white hover:bg-red-600 shadow-md text-xs"
         @click="clearSelection"
       >
         Clear
