@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { Ref } from 'vue'
-
 import GenresFilter from '@/components/GenresFilter.vue'
 import SearchBar from '@/components/SearchBar.vue'
 import ShowList from '@/components/ShowList.vue'
@@ -11,7 +9,7 @@ import { useShowListFilters } from '@/composables/useShowListFilters'
 
 const { selectedGenres, searchQuery } = useShowListFilters()
 
-const { data: showList, error, isLoading } = useShowList(searchQuery as Ref<string>)
+const { data: showList, error, isLoading } = useShowList(searchQuery)
 
 const { filteredShowList } = useFilteredShows(showList, selectedGenres)
 

@@ -1,5 +1,5 @@
 import { refWithControl } from '@vueuse/core'
-import { ref, watch } from 'vue'
+import { type Ref, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 import type { GenreId } from '@/entities/show.entity'
@@ -33,6 +33,6 @@ export function useShowListFilters() {
 
   return {
     selectedGenres,
-    searchQuery
+    searchQuery: searchQuery as Ref<string>
   }
 }
