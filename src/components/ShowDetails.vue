@@ -25,7 +25,7 @@ const sanitizedSummary = computed(() => {
     <div v-else-if="show" class="space-y-6">
       <h1 class="text-3xl font-bold text-gray-800">{{ show.name }}</h1>
       <div class="flex flex-col sm:flex-row gap-6">
-        <div class="w-full sm:w-1/3">
+        <div class="sm:w-1/3">
           <UseImage class="rounded-lg shadow-md" :src="show.image?.original">
             <template #loading>
               <ShowDetailsImageSkeleton />
