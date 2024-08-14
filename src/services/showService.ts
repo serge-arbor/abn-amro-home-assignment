@@ -10,11 +10,6 @@ export const searchShows = async (query: string): Promise<SearchResult[]> => {
   return await apiClient.get('search/shows', { searchParams: { q: query } }).json()
 }
 
-// Expecting genres have a separate endpoint
-export const fetchGenres = async (): Promise<Show[]> => {
-  return await apiClient.get('shows').json()
-}
-
 export const fetchShowDetails = async (id: string): Promise<Show> => {
   return await apiClient.get(`shows/${id}`).json()
 }
