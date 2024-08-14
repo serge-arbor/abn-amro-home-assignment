@@ -14,7 +14,7 @@ const query = defineModel({
       v-model="query"
       type="text"
       placeholder="Type a title to search..."
-      class="w-full px-10 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+      class="w-full px-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
     />
 
     <SearchIcon class="absolute left-3 top-1/2 -translate-y-1/2 size-5 text-gray-400" />
