@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { UseImage } from '@vueuse/components'
+
 import type { Show } from '@/entities/show.entity'
 
 defineProps<{
@@ -12,12 +14,15 @@ defineProps<{
       :to="{ name: 'show-details', params: { id: show.id } }"
       class="flex p-4 hover:bg-gray-100"
     >
-      <img
-        v-if="show.image?.medium"
-        :src="show.image?.medium"
-        :alt="show.name"
-        class="w-24 h-36 object-cover rounded-md"
-      />
+      <UseImage class="w-24 h-36 object-cover rounded-md" :src="show.image?.medium">
+        <template #loading>
+          <div class="w-24 h-36 object-cover rounded-md bg-gray-100"></div>
+        </template>
+        <template #error>
+          <div class="w-24 h-36 object-cover rounded-md bg-gray-100"></div>
+        </template>
+      </UseImage>
+
       <div class="ml-4">
         <h3 class="text-lg font-semibold text-gray-800 mb-2">
           {{ show.name }}

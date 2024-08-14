@@ -15,15 +15,15 @@ const selectedGenres = defineModel({
   required: true
 })
 
-const toggleGenre = (genre: GenreId) => {
+const genreArray = computed(() => Array.from(props.genres.entries()))
+
+const onToggleClick = (genre: GenreId) => {
   selectedGenres.value.has(genre)
     ? selectedGenres.value.delete(genre)
     : selectedGenres.value.add(genre)
 }
 
-const genreArray = computed(() => Array.from(props.genres.entries()))
-
-const clearSelection = () => {
+const onClearClick = () => {
   selectedGenres.value.clear()
 }
 </script>
@@ -42,7 +42,7 @@ const clearSelection = () => {
             ? 'bg-blue-600 text-white border-blue-600 shadow-md hover:bg-blue-700'
             : 'bg-white text-blue-600 border-blue-600 hover:bg-blue-100'
         ]"
-        @click="toggleGenre(genreId)"
+        @click="onToggleClick(genreId)"
       >
         {{ genreDetails.name }} ({{ genreDetails.count }})
       </button>
@@ -50,7 +50,7 @@ const clearSelection = () => {
       <button
         v-if="selectedGenres.size > 0"
         class="px-3 py-1 rounded-md border font-semibold transition-all duration-300 ease-in-out bg-red-500 text-white hover:bg-red-600 shadow-md text-xs"
-        @click="clearSelection"
+        @click="onClearClick"
       >
         Clear
       </button>

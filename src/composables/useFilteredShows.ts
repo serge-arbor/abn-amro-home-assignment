@@ -6,7 +6,7 @@ export function useFilteredShows(
   showList: Ref<Show[] | undefined>,
   activeGenres: Ref<Set<GenreId>>
 ) {
-  const data = computed<Show[] | undefined>(() => {
+  const filteredShowList = computed<Show[] | undefined>(() => {
     const shows = showList.value ?? []
 
     const filtered =
@@ -18,6 +18,6 @@ export function useFilteredShows(
   })
 
   return {
-    data
+    filteredShowList
   }
 }

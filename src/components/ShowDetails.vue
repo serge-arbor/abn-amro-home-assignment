@@ -6,6 +6,7 @@ import { computed } from 'vue'
 import ShowDetailsImageSkeleton from '@/components/skeletons/ShowDetailsImageSkeleton.vue'
 import ShowDetailsSkeleton from '@/components/skeletons/ShowDetailsSkeleton.vue'
 import type { Show } from '@/entities/show.entity'
+
 const props = defineProps<{
   show: Show | undefined
   error: Error | null
@@ -32,7 +33,9 @@ const sanitizedSummary = computed(() => {
               <ShowDetailsImageSkeleton />
             </template>
 
-            <template #error> </template>
+            <template #error>
+              <div class="rounded-lg bg-gray-100 h-full"></div>
+            </template>
           </UseImage>
         </div>
 
