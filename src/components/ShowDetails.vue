@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { sanitizeUrl } from '@braintree/sanitize-url'
 import { UseImage } from '@vueuse/components'
 import DOMPurify from 'dompurify'
 import { computed } from 'vue'
@@ -15,6 +16,16 @@ const props = defineProps<{
 
 const sanitizedSummary = computed(() => {
   return props.show?.summary ? DOMPurify.sanitize(props.show.summary) : ''
+})
+
+const sanitizedOfficialSite = computed(() => {
+  return props.show?.officialSite ? sanitizeUrl(props.show.officialSite) : ''
+})
+
+const sanitizedImdb = computed(() => {
+  return props.show?.externals?.imdb
+    ? sanitizeUrl(`https://www.imdb.com/title/${props.show.externals.imdb}`)
+    : ''
 })
 </script>
 
@@ -56,21 +67,17 @@ const sanitizedSummary = computed(() => {
             <span v-if="show.network?.country">({{ show.network.country.name }})</span>
           </p>
 
-          <p v-if="show.officialSite">
+          <p v-if="sanitizedOfficialSite">
             <strong>Official Site:</strong>
-            <a :href="show.officialSite" target="_blank" class="text-blue-600 underline ml-1">
+            <a :href="sanitizedOfficialSite" target="_blank" class="text-blue-600 underline ml-1">
               {{ show.officialSite }}
             </a>
           </p>
 
-          <div v-if="show.externals.imdb">
+          <div v-if="sanitizedImdb">
             <p>
               <strong>IMDb:</strong>
-              <a
-                :href="'https://www.imdb.com/title/' + show.externals.imdb"
-                target="_blank"
-                class="text-blue-600 underline ml-1"
-              >
+              <a :href="sanitizedImdb" target="_blank" class="text-blue-600 underline ml-1">
                 {{ show.externals.imdb }}
               </a>
             </p>
