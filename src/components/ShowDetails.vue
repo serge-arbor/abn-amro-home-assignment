@@ -4,6 +4,7 @@ import DOMPurify from 'dompurify'
 import { computed } from 'vue'
 
 import ShowDetailsImageSkeleton from '@/components/skeletons/ShowDetailsImageSkeleton.vue'
+import ShowDetailsSkeleton from '@/components/skeletons/ShowDetailsSkeleton.vue'
 import type { Show } from '@/entities/show.entity'
 const props = defineProps<{
   show: Show | undefined
