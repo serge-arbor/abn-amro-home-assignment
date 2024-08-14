@@ -5,8 +5,6 @@ import type { GenreDetails, GenreId } from '@/entities/show.entity'
 
 const props = defineProps<{
   genres: Map<GenreId, GenreDetails>
-  error: Error | null
-  isLoading: boolean
 }>()
 
 const selectedGenres = defineModel({

@@ -1,20 +1,12 @@
-import { useQuery } from '@tanstack/vue-query'
-import { computed } from 'vue'
+import { computed, type Ref } from 'vue'
 
-import { type GenreDetails, type GenreId } from '@/entities/show.entity'
-import { fetchGenres } from '@/services/showService'
+import { type GenreDetails, type GenreId, type Show } from '@/entities/show.entity'
 
-export function useGenres() {
-  const queryInstance = useQuery({
-    queryKey: ['genres'],
-    queryFn: fetchGenres,
-    networkMode: 'offlineFirst'
-  })
-
+export function useGenres(showList: Ref<Show[] | undefined>) {
   const genres = computed<Map<GenreId, GenreDetails>>(() => {
     const genreMap = new Map<GenreId, GenreDetails>()
 
-    for (const show of queryInstance.data.value ?? []) {
+    for (const show of showList.value ?? []) {
       for (const genreName of show.genres) {
         const genreId = genreName as GenreId
 
@@ -39,7 +31,6 @@ export function useGenres() {
   })
 
   return {
-    ...queryInstance,
     genres
   }
 }

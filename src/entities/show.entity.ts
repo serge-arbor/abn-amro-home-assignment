@@ -154,3 +154,8 @@ export interface ShowSearch {
   score: number
   show: Show
 }
+
+export interface SearchResult {
+  score: number
+  show: Show
+}
