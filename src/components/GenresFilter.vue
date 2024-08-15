@@ -21,6 +21,9 @@ const onToggleClick = (genre: GenreId) => {
   selectedGenres.value.has(genre)
     ? selectedGenres.value.delete(genre)
     : selectedGenres.value.add(genre)
+
+  // Trigger reactivity
+  selectedGenres.value = new Set(selectedGenres.value)
 }
 
 const onClearClick = () => {
@@ -49,7 +52,7 @@ const onClearClick = () => {
 
       <button
         v-if="selectedGenres.size > 0"
-        class="px-3 py-1 rounded-md border font-semibold transition-all duration-300 ease-in-out bg-red-500 text-white hover:bg-red-600 shadow-md text-xs"
+        class="clear px-3 py-1 rounded-md border font-semibold transition-all duration-300 ease-in-out bg-red-500 text-white hover:bg-red-600 shadow-md text-xs"
         @click="onClearClick"
       >
         Clear
