@@ -82,7 +82,7 @@ describe('GenresFilter.vue', () => {
     expect(emittedPayload).toEqual(new Set())
   })
 
-  it('displays a loading state when isLoading is true', async () => {
+  it('displays a loading state when isLoading is true', () => {
     const genres = new Map<GenreId, GenreDetails>([
       ['action', { id: 'action', name: 'Action', count: 5 }]
     ])
