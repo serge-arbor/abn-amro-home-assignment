@@ -5,7 +5,7 @@ import { fetchShowDetails } from '@/services/showService'
 
 export function useFetchShowDetails(id: Ref<string>) {
   return useQuery({
-    queryKey: ['showDetails', id],
+    queryKey: ['show-details', id],
     queryFn: () => fetchShowDetails(id.value)
   })
 }
