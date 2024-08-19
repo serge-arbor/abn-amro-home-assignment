@@ -9,7 +9,7 @@ import { useShowListFilters } from '@/composables/useShowListFilters'
 
 const { selectedGenres, searchQuery } = useShowListFilters()
 
-const { data: showList, error, isLoading } = useShowList(searchQuery)
+const { data: showList, error, isLoading, isFetching } = useShowList(searchQuery)
 
 const { filteredShowList } = useFilteredShows(showList, selectedGenres)
 
@@ -18,7 +18,7 @@ const { genres } = useGenres(showList)
 
 <template>
   <main class="p-4 flex flex-col gap-4 max-w-screen-lg mx-auto">
-    <SearchBar v-model="searchQuery" />
+    <SearchBar v-model="searchQuery" :is-fetching="isFetching" />
 
     <GenresFilter v-model="selectedGenres" :genres="genres" :is-loading="isLoading" />
 

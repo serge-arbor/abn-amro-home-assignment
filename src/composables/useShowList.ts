@@ -13,6 +13,7 @@ export function useShowList(searchQuery: Ref<string | undefined>) {
 
       return fetchShows()
     },
-    networkMode: 'offlineFirst'
+    networkMode: 'offlineFirst',
+    placeholderData: (previousData) => previousData
   })
 }
