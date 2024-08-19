@@ -9,9 +9,11 @@ import ShowDetailsImageSkeleton from '@/components/skeletons/ShowDetailsImageSke
     <!-- Title Skeleton -->
     <NSkeleton text :repeat="1" height="48px" width="50%" />
 
-    <div class="flex flex-col md:flex-row gap-6">
+    <div class="flex flex-col sm:flex-row gap-6">
       <!-- Image Skeleton -->
-      <ShowDetailsImageSkeleton />
+      <div class="sm:w-1/3">
+        <ShowDetailsImageSkeleton />
+      </div>
 
       <div class="space-y-2 flex-1">
         <!-- Language Skeleton -->
